@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="../../post/index.xml">
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@SpeechFreedomCN">
+    <meta name="twitter:creator" content="@SpeechFreedomCN">
+    <meta name="og:title" content=" 谈谈张尧学的多操作系统启动 | 中国文化大革命文库 The Chinese Cultural Revolution Database " />
+    <meta name="og:description" content="谈谈张尧学的多操作系统启动
+作者：jhuang
+张尧学说无盘站有很多局限，“如只能识别一个操作系统”(中国作家协会的会员原话如此)，他做的扩展就是能够加载多个操作系统。这显然是胡说，完全无视众多Multi-OS boot manager。我们来看看他是怎么实现的，网上有这么一篇论文《一种基于透明计算的远程启动协议MRBP2》，敝人水平有限，这里面说的诸如“OSPM机制可定制主引导扇区”完全理解不了。在演示视频中，出现操作系统选择的画面，倒是图型化的，还支持鼠标，但是整个图形界面的精细度来看，还是差一些。我大胆猜测，这就是一个早先的DOS下的图形界面。那问题来了，难不成张学尧的团队当真开发了DOS下联网选择操作系统，再选择启动的东西? 真做成也算不了什么。受制于技术水平，张的团队不大可能走这条路。别的不说，实模式下网卡驱动弄不好要自己写。张学尧的团队可能就是用了iscsi。现在很多网卡支持iscsi启动，操作系统会因此将远程服务器上的硬盘当作本地硬盘。另外很多主板也支持iscsi启动。那接下来也就很容易了，张的团队就先在客户机的网卡上配置好iscsi的target，然后“主硬盘”启动DOS，进入图形界面，显示演示视频中的操作系统选择界面。然后用户点击按钮，调用中断，从一个特定硬盘加载操作系统。张学尧在论文中说PXE的机制不适用于Windows NT。透明计算里面是这样介绍加载机制的：“将BIOS磁盘访问中东重定向到网络服务器”。张学尧要是说了iSCSI引导，估计大家很快明白。莫非这就是“透明计算”的高级商业机密？
+(XYS20150203)" />
+    <meta name="og:image"
+        content="https://opvlbqxurl.execute-api.ap-northeast-2.amazonaws.com/prod/random?keyword=programming&slug=谈谈张尧学的多操作系统启动" />
+    <title> 谈谈张尧学的多操作系统启动 | 中国文化大革命文库 The Chinese Cultural Revolution Database</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-151212685-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-151212685-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://speechfree.github.io/xys/css/blog.css" />
+    
+    <!-- plugins -->
+    
+    <link rel="stylesheet" href="https://speechfree.github.io/xys/plugins/bootstrap/bootstrap.min.css ">
+    
+    <link rel="stylesheet" href="https://speechfree.github.io/xys/plugins/themify-icons/themify-icons.css ">
+    
+
+</head>
+
+<body>
+
+    
+    <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="https://speechfree.github.io/xys/">Home</a>
+        </div>
+        <div class="navbar-brand">
+            <a class="navbar-item" href="https://speechfree.github.io/xys/post/index.xml">RSS</a>
+        </div>
+    </nav>
+    
+
+    
+    <section class="hero is-info is-medium">
+        <div class="hero-body" style="background-image: url(https://speechfree.github.io/xys/img/bg-blog.jpg);">
+            <div class="container has-text-centered">
+                <br>
+                <h1 class="title is-size-1">
+                    
+                    谈谈张尧学的多操作系统启动
+                    
+                </h1>
+                
+            </div>
+        </div>
+    </section>
+
+<div class="container">
+    <div class="section">
+    
+
+<div class="columns">
+    <div class="column is-12">
+        <div class="tile is-child box">
+            
+
+            <div class="content">
+                <p>谈谈张尧学的多操作系统启动</p>
+
+<p>作者：jhuang</p>
+
+<p>张尧学说无盘站有很多局限，“如只能识别一个操作系统”(中国作家协会的会员原话如此)，他做的扩展就是能够加载多个操作系统。这显然是胡说，完全无视众多Multi-OS boot manager。我们来看看他是怎么实现的，网上有这么一篇论文《一种基于透明计算的远程启动协议MRBP2》，敝人水平有限，这里面说的诸如“OSPM机制可定制主引导扇区”完全理解不了。在演示视频中，出现操作系统选择的画面，倒是图型化的，还支持鼠标，但是整个图形界面的精细度来看，还是差一些。我大胆猜测，这就是一个早先的DOS下的图形界面。那问题来了，难不成张学尧的团队当真开发了DOS下联网选择操作系统，再选择启动的东西? 真做成也算不了什么。受制于技术水平，张的团队不大可能走这条路。别的不说，实模式下网卡驱动弄不好要自己写。张学尧的团队可能就是用了iscsi。现在很多网卡支持iscsi启动，操作系统会因此将远程服务器上的硬盘当作本地硬盘。另外很多主板也支持iscsi启动。那接下来也就很容易了，张的团队就先在客户机的网卡上配置好iscsi的target，然后“主硬盘”启动DOS，进入图形界面，显示演示视频中的操作系统选择界面。然后用户点击按钮，调用中断，从一个特定硬盘加载操作系统。张学尧在论文中说PXE的机制不适用于Windows NT。透明计算里面是这样介绍加载机制的：“将BIOS磁盘访问中东重定向到网络服务器”。张学尧要是说了iSCSI引导，估计大家很快明白。莫非这就是“透明计算”的高级商业机密？</p>
+
+<p>(XYS20150203)</p>
+
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+    </div>
+</div>
+
+<footer class="footer has-background-grey-darker has-text-white">
+    <div class="content has-text-centered">
+        <p>
+            <br><br>
+            <br><br>
+            Copyright &copy; 中国文化大革命文库 The Chinese Cultural Revolution Database 2019
+        </p>
+    </div>
+</footer>
+
+<script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+</body>
+
+</html>
