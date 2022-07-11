@@ -32,7 +32,7 @@
         "babel-eslint": "^10.0.1",
         "babel-loader": "^8.2.5",
         "clean-webpack-plugin": "^4.0.0",
-        "copy-webpack-plugin": "^5.0.0",
+        "copy-webpack-plugin": "^6.4.1",
         "cross-env": "^5.2.0",
         "css-loader": "^3.1.0",
         "date-fns": "^1.30.1",
